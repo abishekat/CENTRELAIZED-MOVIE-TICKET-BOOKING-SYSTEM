@@ -1,7 +1,7 @@
 import pymysql
 #import aws_credentials as rds
 from base64 import b64encode
-
+# AWS RDS
 conn = pymysql.connect(
       host= "database-1.ctk7aecosf9d.us-east-1.rds.amazonaws.com",
         user = "admin",
