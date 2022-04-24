@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jul 25 12:02:51 2020
-
-@author: hp
-"""
-
 from flask import Flask, render_template, request, flash, redirect, url_for, jsonify, session
 from flask import Response, send_file
 
