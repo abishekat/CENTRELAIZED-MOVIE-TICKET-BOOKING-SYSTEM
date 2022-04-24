@@ -69,3 +69,20 @@ def get_admin_password_details():
     User_deatils = cur.fetchall()
     return User_deatils
 
+def ticket_view(id):
+    cur=conn.cursor()
+    cur.execute("SELECT seat_id FROM AWS_TEAM8_DATABASE.seat_select_1  WHERE id ="+ " "+" ' " +str(id)+ "'")
+    all_file = cur.fetchall()
+    return  all_file
+
+def global_var_poster(id):
+    cur=conn.cursor()
+    cur.execute(""" UPDATE AWS_TEAM8_DATABASE.global_variable_movie_poster set id_var =%s WHERE id = '0' """, (int(id)))
+    conn.commit()
+
+def get_global_var_poster():
+    cur=conn.cursor()
+    cur.execute("SELECT * FROM AWS_TEAM8_DATABASE.global_variable_movie_poster")
+    file = cur.fetchone()
+    return file
+

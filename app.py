@@ -12,7 +12,8 @@ app = Flask(__name__, template_folder='templates')
 import rds_db as db
 import pymysql
 from base64 import b64encode
-
+movie_front_poster = str()
+movie_description = str()
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
@@ -32,6 +33,7 @@ def home():
 @app.route('/edit/<id>', methods=['POST', 'GET'])
 def get_movie_detailed_view(id):
     all_file = db.fetch_movie_detailed_view(id)
+    ID = []
     for i in all_file:
         ID = i[0]
         movie_front_poster = b64encode(i[1]).decode("utf-8")
@@ -43,6 +45,8 @@ def get_movie_detailed_view(id):
         # actor1_image = b64encode(i[7]).decode("utf-8")
         actor1_name = i[8]
         movie_trailer_link = i[9]
+
+    db.global_var_poster(int(ID))
 
     return render_template('moviedeatildview.html', ID=ID,
                            movie_front_poster=movie_front_poster,
@@ -126,17 +130,38 @@ def Indexseat():
     list_users = db.get_seat_details()
     # print(list_users)
 
-    return render_template('seat_selectionPage.html', list_users=list_users)
+    return render_template('seat_selectionPage.html', list_users=list_users,movie_description=movie_description)
 
 
 @app.route('/update_seates', methods=['POST'])
 def add_student():
-    if request.method == 'POST':
-        listup = request.form.getlist('mycheckbox')
-        for i in listup:
-            print(int(i))
-            db.update_seat_by_id(int(i))
-    return redirect(url_for("Indexseat"))
+
+    IDE1 = db.get_global_var_poster()
+    print("-------------------------------IDE1--------------------------------------")
+    print(IDE1)
+    all_file_1 = db.fetch_movie_detailed_view(int(IDE1[1]))
+    print("-------------------------------IDE1--------------------------------------")
+    print(all_file_1)
+
+
+    link_list = []
+    movie_front_poster_1 = int()
+    movie_name_2 = str()
+
+    listup = request.form.getlist('mycheckbox')
+    for i in listup:
+        print(int(i))
+        db.update_seat_by_id(int(i))
+
+    for i in listup:
+        iddd = db.ticket_view(int(i))
+        idf = iddd[0]
+        link_list.append(idf[0])
+
+    for i in all_file_1:
+        movie_front_poster_1 = b64encode(i[1]).decode("utf-8")
+        movie_name_2 = i[2]
+    return render_template('ticketView.html',seat_list  = link_list,movie_front_poster_1 =movie_front_poster_1,movie_name_2 = movie_name_2 )
 
 
 @app.route('/admin_login')
