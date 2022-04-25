@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="static\css\styleHomePage.css">
    </head>
    <body>
-
       <nav class="navbar navbar-inverse ">
          <div class="container-fluid">
             <div class="row">
@@ -29,7 +28,6 @@
                      </ul>
                      <ul class="nav navbar-nav navbar-right">
                         <li><a href="/adminEditor"> ADMIN EDITOR</a></li>
-
                      </ul>
                   </div>
                </div>
@@ -55,20 +53,19 @@
                            <tr>
                            </tr>
                         </thead>
-                           <tbody style="background-color: rgb(255, 255, 255);">
-                              <tr>
-                                 {% for M in data %}
-                                 <td> <a href="/edit/{{M[1]}}" ><img  class="zoom" src="data:;base64,{{M[0]}}" width="200"
-                                    height="300"/></a></td>
-                                 {% endfor %}
-                              </tr>
-                              <tr>
-                                 {% for M in data %}
-                                 <td>{{M[2]}}</td>
-                                 {% endfor %}
-                              </tr>
-                           </tbody>
-
+                        <tbody style="background-color: rgb(255, 255, 255);">
+                           <tr>
+                              {% for M in data %}
+                              <td> <a href="/edit/{{M[1]}}" ><img  class="zoom" src="data:;base64,{{M[0]}}" width="200"
+                                 height="300"/></a></td>
+                              {% endfor %}
+                           </tr>
+                           <tr>
+                              {% for M in data %}
+                              <td>{{M[2]}}</td>
+                              {% endfor %}
+                           </tr>
+                        </tbody>
                      </table>
                   </div>
                </form>
