@@ -9,7 +9,7 @@ app = Flask(__name__)
 def Index():
      list_users = db.get_details()
      #print(list_users)
-     return render_template('seat_selectionpage.html', list_users = list_users)
+     return render_template('seatSelectionPage.html', list_users = list_users)
  
 
 @app.route('/update_seates', methods=['POST'])

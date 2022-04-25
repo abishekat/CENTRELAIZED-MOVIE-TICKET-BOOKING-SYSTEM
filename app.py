@@ -42,7 +42,7 @@ def get_movie_detailed_view(id):
 
     db.global_var_poster(int(ID))
 
-    return render_template('moviedeatildview.html', ID=ID,
+    return render_template('movieDetailedView.html', ID=ID,
                            movie_front_poster=movie_front_poster,
                            movie_name=movie_name,
                            movie_description=movie_description,
@@ -70,7 +70,7 @@ def login():
             password_temp = (i[1])
             if email_html == emails_temp and password_html == password_temp:
                 return 'success'
-        return render_template("wrongpwd.html")
+        return render_template("invalidCredentials.html")
 
 
 @app.route('/signup')
@@ -86,7 +86,7 @@ def registration():
         email = request.form['email']
         password = request.form['password']
         db.insert_details(fName, lName, email, password)
-        return render_template("regSuc.html")
+        return render_template("regSuccess.html")
     # return redirect(url_for("index"))
 
 
@@ -96,14 +96,7 @@ def Index1():
     details = db.get_details()
 
     print(details)
-    return render_template('Registration_information.html', employee=details)
-
-
-@app.route('/imagefox', methods=['POST', 'GET'])
-def Index2():
-    image = db.get_image()
-    return render_template('imagedisplay.html', image=image)
-
+    return render_template('registerationInformation.html', employee=details)
 
 @app.route('/edit', methods=['POST', 'GET'])
 def get_employee():
@@ -116,7 +109,7 @@ def get_employee():
 
 @app.route('/delete', methods=['POST', 'GET'])
 def delete_employee():
-    return redirect(url_for('Registration_information.html'))
+    return redirect(url_for('registerationInformation.html'))
 
 
 @app.route('/seatviewpage')
@@ -124,7 +117,7 @@ def Indexseat():
     list_users = db.get_seat_details()
     # print(list_users)
 
-    return render_template('seat_selectionPage.html', list_users=list_users,movie_description=movie_description)
+    return render_template('seatSelectionPage.html', list_users=list_users,movie_description=movie_description)
 
 
 @app.route('/update_seates', methods=['POST'])
@@ -158,9 +151,9 @@ def add_student():
     return render_template('ticketView.html',seat_list  = link_list,movie_front_poster_1 =movie_front_poster_1,movie_name_2 = movie_name_2 )
 
 
-@app.route('/admin_login')
+@app.route('/adminLogin')
 def index_1():
-    return render_template('admin_login.html')
+    return render_template('adminLogin.html')
 
 
 @app.route('/admin_loginInfo', methods=['POST', 'GET'])
@@ -173,8 +166,8 @@ def admin_login():
             emails_temp = (i[0])
             password_temp = (i[1])
             if email_html == emails_temp and password_html == password_temp:
-                return render_template("homePage_admin.html")
-        return render_template("wrongpwd.html")
+                return render_template("homePageAdmin.html")
+        return render_template("invalidCredentials.html")
 
 @app.route('/aboutUs')
 def about_us():
