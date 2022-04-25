@@ -176,6 +176,8 @@ def admin_login():
                 return render_template("homePage_admin.html")
         return render_template("wrongpwd.html")
 
-
+@app.route('/aboutUs')
+def about_us():
+    return render_template("aboutUs.html")
 if __name__ == "__main__":
     app.run(host='127.0.0.9', port=4455, debug=True)
