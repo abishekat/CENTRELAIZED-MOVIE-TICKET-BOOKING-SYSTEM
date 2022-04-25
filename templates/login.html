@@ -4,12 +4,11 @@
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <title>User Login</title>
-      <link rel="stylesheet" href="../static/css/styleLogin.css">
-      <style>
-}</style>
+      <link rel="stylesheet" href="../static/css/styleTicketView.css">
+      <title>Tickets</title>
    </head>
-   <body>
+   <!--   TICKETS VIEW-->
+   <body style="background-color: black;">
       <nav class="navbar navbar-inverse ">
          <div class="container-fluid">
             <div class="row">
@@ -20,7 +19,7 @@
                   </div>
                   <div class="navbar-collapse collapse" id="mobile_menu">
                      <ul class="nav navbar-nav">
-                        <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
+                        <li ><a href="{{ url_for('home') }}">Home</a></li>
                         <li>
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
                            <ul class="dropdown-menu">
@@ -34,41 +33,48 @@
                            <ul class="dropdown-menu">
                               <li><a href="/login">Login</a></li>
                               <li><a href="/signup">Sign Up</a></li>
-                              <li><a href="/adminLogin">Admin Login</a></li>
                            </ul>
                         </li>
-
                      </ul>
                   </div>
                </div>
             </div>
          </div>
       </nav>
-      <div class="container">
-         <div class="row">
-            <div class="col-sm-4">
+      <center>
+         <h2 class="text">Ticket Details</h2>
+      </center>
+      <div class="image">
+         <img  img src="data:;base64,{{movie_front_poster_1}}" width="250px" height="350px" class='plus-image',text=trailer/>
+      </div>
+      <div class="cardWrap">
+         <div class="card cardLeft">
+            <h1>Startup <span>Cinema</span></h1>
+            <div class="title">
+               <h2>AUDI 1</h2>
+               <span>movie</span>
             </div>
-            <div class="col-sm-4">
-               <h4 class="text-dark text-center">LOGIN</h4>
-               <form action="/loginInfo" method="POST">
-                  <div class="form-group">
-                     <label for="pwd">Email:</label>
-                     <input name="email" type="email" class="form-control" id="pwd" required>
-                  </div>
-                  <div class="form-group">
-                     <label for="pwd">Password:</label>
-                     <input name="password" type="password" class="form-control" id="password" required>
-                  </div>
-                  <br>
-                  <input type="submit" name="submit" value="Submit" class="btn btn-success">
-               </form>
+            <div class="name">
+               <h2>{{movie_name_2}}</h2>
+               <span>movie name</span>
+            </div>
+            <div class="seat">
+               <h2>{{seat_list}}</h2>
+               <span>seat</span>
+            </div>
+            <div class="time">
+               <h2>12:00</h2>
+               <span>time</span>
             </div>
          </div>
-         <footer id="sticky-footer" class="flex-shrink-0 py-4 bg-dark text-white-50">
-            <div class="container text-center">
-               <h5>2022 Copyright &copy; <a href="https://www.concordia.ca/">Concordia University</a></h5>
+         <div class="card cardRight">
+            <div class="eye"></div>
+            <div class="number">
+               <h3>{{seat_list}}</h3>
+               <span>seat</span>
             </div>
-         </footer>
+            <div class="barcode"></div>
+         </div>
       </div>
    </body>
 </html>
