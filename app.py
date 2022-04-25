@@ -156,7 +156,7 @@ def index_1():
     return render_template('adminLogin.html')
 
 
-@app.route('/admin_loginInfo', methods=['POST', 'GET'])
+@app.route('/adminHome', methods=['POST', 'GET'])
 def admin_login():
     if request.method == 'POST':
         email_html = request.form['email']
@@ -165,12 +165,15 @@ def admin_login():
         for i in User_details:
             emails_temp = (i[0])
             password_temp = (i[1])
+            print(password_temp)
             if email_html == emails_temp and password_html == password_temp:
                 return render_template("homePageAdmin.html")
         return render_template("invalidCredentials.html")
+
+
 
 @app.route('/aboutUs')
 def about_us():
     return render_template("aboutUs.html")
 if __name__ == "__main__":
-    app.run(host='127.0.0.9', port=4455, debug=True)
+    app.run(debug=True)
