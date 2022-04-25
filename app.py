@@ -171,6 +171,47 @@ def admin_login():
         return render_template("invalidCredentials.html")
 
 
+@app.route('/adminEditor')
+def indexAdmin():
+    # print('----------------111111111-----------------------------')
+    list_users = db.get_details_admin()
+    # print(list_users)
+    return render_template('adminRegistrationEditor.html', list_users=list_users)
+
+
+@app.route('/registrationInfo', methods=['POST'])
+def add_student_1():
+    if request.method == 'POST':
+        fName = request.form['fName']
+        lName = request.form['lName']
+        email = request.form['email']
+        password = request.form['password']
+        db.insert_details_admin(fName, lName, email, password)
+        return redirect(url_for("indexAdmin"))
+
+
+@app.route('/edit_admin/<id>', methods=['POST', 'GET'])
+def get_employee_1(id):
+    return render_template('modifyAdminDetails.html', student=id)
+
+
+@app.route('/update/<id>', methods=['POST'])
+def update_student(id):
+    if request.method == 'POST':
+        fname = request.form['fname']
+        lname = request.form['lname']
+        email = request.form['email']
+        password = request.form['password']
+        db.update_by_id_admin(fname, lname, email, password, id)
+        return redirect(url_for('indexAdmin'))
+
+
+@app.route('/delete/<string:id>', methods=['POST', 'GET'])
+def delete_student(id):
+    db.delet_record_function_admin(id)
+    return redirect(url_for('indexAdmin'))
+
+
 
 @app.route('/aboutUs')
 def about_us():

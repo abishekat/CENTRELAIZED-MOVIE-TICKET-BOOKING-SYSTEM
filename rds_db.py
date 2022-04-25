@@ -86,3 +86,42 @@ def get_global_var_poster():
     file = cur.fetchone()
     return file
 
+
+
+
+
+
+
+#=======================================admin functions ====================================================
+
+
+
+def insert_details_admin(fName, lName,email,password):
+    cur=conn.cursor() #USING CONNECTION WE ARE CREATING CURSOR
+    cur.execute("INSERT INTO AWS_TEAM8_DATABASE.USER_REGISTRATION_INFO(FIRST_NAME,LAST_NAME,EMAIL,PASSWORD) VALUES (%s,%s,%s,%s)", (fName, lName,email,password))
+    conn.commit()
+
+def get_details_admin():
+    cur=conn.cursor()
+    cur.execute("SELECT * FROM AWS_TEAM8_DATABASE.USER_REGISTRATION_INFO")
+    details = cur.fetchall()
+    return details
+
+def get_email_password_details_admin():
+    cur=conn.cursor()
+    cur.execute("SELECT EMAIL,PASSWORD FROM AWS_TEAM8_DATABASE.USER_REGISTRATION_INFO")
+    User_deatils = cur.fetchall()
+    return User_deatils
+
+
+def delet_record_function_admin(id):
+    cur=conn.cursor()
+    cur.execute("DELETE FROM AWS_TEAM8_DATABASE.USER_REGISTRATION_INFO  where id ="+ " "+" ' " +str(id)+ "'")
+    conn.commit()
+
+
+def update_by_id_admin(fname, lname, email,password,id):
+    cur=conn.cursor()
+    cur.execute(""" UPDATE AWS_TEAM8_DATABASE.USER_REGISTRATION_INFO SET FIRST_NAME = %s, LAST_NAME = %s, EMAIL = %s ,PASSWORD =%s WHERE id = %s """, (fname, lname, email,password, id))
+    conn.commit()
+
