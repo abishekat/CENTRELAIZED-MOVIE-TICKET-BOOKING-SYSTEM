@@ -1,141 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seat Selection</title>
-<link rel="stylesheet" href="static/css/styleSeatSelect.css"> </head>
-
-<body>
-<!--NAVBAR-->
-<h1 style="text-align:center;">RESERVE YOUR SEATS HERE!!!</h1>
-<br>
-<br>
-<br>
-<center>
-<label>Select a Theater</label>
-<select id="theatre" name="s1" onchange="myFunction1()" required>
-<option></option>
-<option value="80">MARUTHI THEATRE</option>
-<option value="100">SUJATHA THEATRE</option>
-<option value="150">VBN DOLBY </option>
-<option value="140">KRISHNA DTS</option>
-</select>
-<label>Date</label>
-<input type="date" id="date1" name="d1" required/>
-<label>Show Timings</label>
-<select id="time" name="s2" onchange="myFunction2()" required>
-<option></option>
-<option value="">10AM(MORNING-SHOW)</option>
-<option value="">2PM(MATNEE)</option>
-<option value="">6PM(EVENING-SHOW) </option>
-<option value="">10PM(LAST-SHOW)</option>
-</select>
-</center>
-<div class="screen">SCREEN</div>
-<div class="help">
-<div class="smallBox greenBox1">Selected Seat</div>
-<br />
-<div class="smallBox redBox1">Reserved Seat</div>
-<br />
-<div class="smallBox emptyBox1">Empty Seat</div>
-<br /> </div>
-<form action="/update_seates" method="POST">
-<div class="seatStructure">
-<center>
-<table id="seatsBlock">
-<p id="notification"></p>
-<tr>
-<td colspan="10"> </td>
-<br /> </tr>
-<tr>
-<td></td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td></td>
-<td>6</td>
-<td>7</td>
-<td>8</td>
-<td>9</td>
-<td>10</td>
-</tr>
-<tr>
-<td>A</td>
-{% for row in list_users %}
-{% if row[0] <= 5 %}
-{% if row[1] == 1 %}
-<td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
-{%else%}
-<td class="smallBox redBox" ></td>
-{% endif %}
-{% endif %}
-{% endfor %}
-<td class="seatGap"></td>
-{% for row in list_users %}
-{% if row[0] > 5 and row[0] <= 10 %}
-{% if row[1] == 1 %}
-<td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
-{%else%}
-<td class="smallBox redBox" ></td>
-{% endif %}
-{% endif %}
-{% endfor %}
-</tr>
-
-<tr>
-<td>B</td>
-{% for row in list_users %}
-{% if row[0] > 10 and row[0] <= 15 %}
-{% if row[1] == 1 %}
-<td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
-{%else%}
-<td class="smallBox redBox" ></td>
-{% endif %}
-{% endif %}
-{% endfor %}
-<td class="seatGap"></td>
-{% for row in list_users %}
-{% if row[0] > 15 and row[0] <= 20 %}
-{% if row[1] == 1 %}
-<td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
-{%else%}
-<td class="smallBox redBox" ></td>
-{% endif %}
-{% endif %}
-{% endfor %}
-</tr>
-
-<tr>
-<td>C</td>
-{% for row in list_users %}
-{% if row[0] > 20 and row[0] <= 25 %}
-{% if row[1] == 1 %}
-<td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
-{%else%}
-<td class="smallBox redBox" ></td>
-{% endif %}
-{% endif %}
-{% endfor %}
-<td class="seatGap"></td>
-{% for row in list_users %}
-{% if row[0] > 25 and row[0] <= 30 %}
-{% if row[1] == 1 %}
-<td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
-{%else%}
-<td class="smallBox redBox" ></td>
-{% endif %}
-{% endif %}
-{% endfor %}
-
-
-</table>
-<input type="submit" class="help"> </center>
-</form>
-</div>
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Seat Selection</title>
+      <link rel="stylesheet" href="static/css/styleSeatSelect.css">
+   </head>
+   <body>
+      <!--NAVBAR-->
+      <h1 style="text-align:center;">RESERVE YOUR SEATS HERE!!!</h1>
+      <br>
+      <br>
+      <br>
+      <center>
+         <label>Select a Theater</label>
+         <select id="theatre" name="s1" onchange="myFunction1()" required>
+            <option></option>
+            <option value="80">MARUTHI THEATRE</option>
+            <option value="100">SUJATHA THEATRE</option>
+            <option value="150">VBN DOLBY </option>
+            <option value="140">KRISHNA DTS</option>
+         </select>
+         <label>Date</label>
+         <input type="date" id="date1" name="d1" required/>
+         <label>Show Timings</label>
+         <select id="time" name="s2" onchange="myFunction2()" required>
+            <option></option>
+            <option value="">10AM(MORNING-SHOW)</option>
+            <option value="">2PM(MATNEE)</option>
+            <option value="">6PM(EVENING-SHOW) </option>
+            <option value="">10PM(LAST-SHOW)</option>
+         </select>
+      </center>
+      <div class="screen">SCREEN</div>
+      <div class="help">
+         <div class="smallBox greenBox1">Selected Seat</div>
+         <br />
+         <div class="smallBox redBox1">Reserved Seat</div>
+         <br />
+         <div class="smallBox emptyBox1">Empty Seat</div>
+         <br />
+      </div>
+      <form action="/update_seates" method="POST">
+         <div class="seatStructure">
+            <center>
+               <table id="seatsBlock">
+                  <p id="notification"></p>
+                  <tr>
+                     <td colspan="10"> </td>
+                     <br />
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td>1</td>
+                     <td>2</td>
+                     <td>3</td>
+                     <td>4</td>
+                     <td>5</td>
+                     <td></td>
+                     <td>6</td>
+                     <td>7</td>
+                     <td>8</td>
+                     <td>9</td>
+                     <td>10</td>
+                  </tr>
+                  <tr>
+                     <td>A</td>
+                     {% for row in list_users %}
+                     {% if row[0] <= 5 %}
+                     {% if row[1] == 1 %}
+                     <td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
+                     {%else%}
+                     <td class="smallBox redBox" ></td>
+                     {% endif %}
+                     {% endif %}
+                     {% endfor %}
+                     <td class="seatGap"></td>
+                     {% for row in list_users %}
+                     {% if row[0] > 5 and row[0] <= 10 %}
+                     {% if row[1] == 1 %}
+                     <td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
+                     {%else%}
+                     <td class="smallBox redBox" ></td>
+                     {% endif %}
+                     {% endif %}
+                     {% endfor %}
+                  </tr>
+                  <tr>
+                     <td>B</td>
+                     {% for row in list_users %}
+                     {% if row[0] > 10 and row[0] <= 15 %}
+                     {% if row[1] == 1 %}
+                     <td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
+                     {%else%}
+                     <td class="smallBox redBox" ></td>
+                     {% endif %}
+                     {% endif %}
+                     {% endfor %}
+                     <td class="seatGap"></td>
+                     {% for row in list_users %}
+                     {% if row[0] > 15 and row[0] <= 20 %}
+                     {% if row[1] == 1 %}
+                     <td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
+                     {%else%}
+                     <td class="smallBox redBox" ></td>
+                     {% endif %}
+                     {% endif %}
+                     {% endfor %}
+                  </tr>
+                  <tr>
+                     <td>C</td>
+                     {% for row in list_users %}
+                     {% if row[0] > 20 and row[0] <= 25 %}
+                     {% if row[1] == 1 %}
+                     <td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
+                     {%else%}
+                     <td class="smallBox redBox" ></td>
+                     {% endif %}
+                     {% endif %}
+                     {% endfor %}
+                     <td class="seatGap"></td>
+                     {% for row in list_users %}
+                     {% if row[0] > 25 and row[0] <= 30 %}
+                     {% if row[1] == 1 %}
+                     <td><input type="checkbox" class="seats" value={{row[0]}} name="mycheckbox"></td>
+                     {%else%}
+                     <td class="smallBox redBox" ></td>
+                     {% endif %}
+                     {% endif %}
+                     {% endfor %}
+               </table>
+               <input type="submit" class="help">
+            </center>
+      </form>
+      </div>
+   </body>
 </html>
